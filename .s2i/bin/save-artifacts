@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+touch /tmp/artifact
+cd /tmp
+tar cf - artifact
+

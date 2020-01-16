@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    build: output-build
+  name: output-build
+spec:
+  output:
+    to:
+      kind: DockerImage
+      name: devexp-registry.mirror-registry.qe.devcluster.openshift.com:5000/wewang/ruby-test:latest
+  source:
+    dockerfile: |-
+      FROM devexp-registry.mirror-registry.qe.devcluster.openshift.com:5000/wewang/ruby-23-centos7:latest
+      RUN mkdir -p /tmp/test
+  strategy:
+    sourceStrategy:
+      from:
+        kind: DockerImage
+        name: devexp-registry.mirror-registry.qe.devcluster.openshift.com:5000/wewang/ruby-25-centos7:latest
